@@ -1,0 +1,282 @@
+[
+  {
+    "level_": 0,
+    "message_": "Start JSON generation. Platform version: 23 min SDK version: armeabi-v7a",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -531161394
+  },
+  {
+    "level_": 0,
+    "message_": "rebuilding JSON /Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a/android_gradle_build.json due to:",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1607831260
+  },
+  {
+    "level_": 0,
+    "message_": "- expected json /Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a/android_gradle_build.json file is not present, will remove stale json folder",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -207432932
+  },
+  {
+    "level_": 0,
+    "message_": "- missing previous command file /Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a/metadata_generation_command.txt, will remove stale json folder",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -540512134
+  },
+  {
+    "level_": 0,
+    "message_": "- command changed from previous, will remove stale json folder",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1947092968
+  },
+  {
+    "level_": 0,
+    "message_": "removing stale contents from \u0027/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a\u0027",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 549321909
+  },
+  {
+    "level_": 0,
+    "message_": "created folder \u0027/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a\u0027",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -432390975
+  },
+  {
+    "level_": 0,
+    "message_": "executing cmake Executable : /Users/codrin/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake\narguments : \n-H/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp\n-DCMAKE_SYSTEM_NAME\u003dAndroid\n-DCMAKE_EXPORT_COMPILE_COMMANDS\u003dON\n-DCMAKE_SYSTEM_VERSION\u003d23\n-DANDROID_PLATFORM\u003dandroid-23\n-DANDROID_ABI\u003darmeabi-v7a\n-DCMAKE_ANDROID_ARCH_ABI\u003darmeabi-v7a\n-DANDROID_NDK\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147\n-DCMAKE_ANDROID_NDK\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147\n-DCMAKE_TOOLCHAIN_FILE\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147/build/cmake/android.toolchain.cmake\n-DCMAKE_MAKE_PROGRAM\u003d/Users/codrin/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja\n-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\u003d/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/build/intermediates/cxx/Debug/xx2r3243/obj/armeabi-v7a\n-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\u003d/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/build/intermediates/cxx/Debug/xx2r3243/obj/armeabi-v7a\n-DCMAKE_BUILD_TYPE\u003dDebug\n-B/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a\n-GNinja\njvmArgs : \n\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1459910320
+  },
+  {
+    "level_": 0,
+    "message_": "\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -295551578
+  },
+  {
+    "level_": 0,
+    "message_": "[\u003d\u003d \"CMake Server\" \u003d\u003d[\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1472667520
+  },
+  {
+    "level_": 0,
+    "message_": "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2106915167
+  },
+  {
+    "level_": 0,
+    "message_": "]\u003d\u003d \"CMake Server\" \u003d\u003d]\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1216131648
+  },
+  {
+    "level_": 3,
+    "message_": "Not a directory: /Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -985275742
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp\",\n  \"buildDirectory\": \"/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/.cxx/Debug/xx2r3243/armeabi-v7a\",\n  \"generator\": \"Ninja\"\n}\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 217278688
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"gradle-cmake-cookie\",\"errorMessage\":\"Failed to activate protocol version: \\\"sourceDirectory\\\" is not a directory.\",\"inReplyTo\":\"handshake\",\"type\":\"error\"}\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1355291106
+  },
+  {
+    "level_": 3,
+    "message_": "Failed to activate protocol version: \"sourceDirectory\" is not a directory.",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -121928209
+  },
+  {
+    "level_": 0,
+    "message_": "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d23\",\n    \"-DANDROID_PLATFORM\\u003dandroid-23\",\n    \"-DANDROID_ABI\\u003darmeabi-v7a\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003darmeabi-v7a\",\n    \"-DANDROID_NDK\\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147\",\n    \"-DCMAKE_ANDROID_NDK\\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003d/Users/codrin/Library/Android/sdk/ndk/21.3.6528147/build/cmake/android.toolchain.cmake\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003d/Users/codrin/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003d/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/build/intermediates/cxx/Debug/xx2r3243/obj/armeabi-v7a\",\n    \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\\u003d/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/build/intermediates/cxx/Debug/xx2r3243/obj/armeabi-v7a\",\n    \"-DCMAKE_BUILD_TYPE\\u003dDebug\"\n  ]\n}\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1895359893
+  },
+  {
+    "level_": 0,
+    "message_": "{\"cookie\":\"\",\"errorMessage\":\"Waiting for type \\\"handshake\\\".\",\"inReplyTo\":\"configure\",\"type\":\"error\"}\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1147146312
+  },
+  {
+    "level_": 3,
+    "message_": "Waiting for type \"handshake\".",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -960320404
+  },
+  {
+    "level_": 0,
+    "message_": "JSON generation completed with problem. Exception: com.android.ide.common.process.ProcessException: Error configuring CMake server (/Users/codrin/Library/Android/sdk/cmake/3.10.2.4988404/bin).\r\n",
+    "file_": "/Users/codrin/Documents/Code/FTC-2021-2022-RO182/TeamCode/src/main/cpp/CMakeLists.txt",
+    "tag_": "debug|armeabi-v7a",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 869814544
+  }
+]
