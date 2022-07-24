@@ -7,21 +7,28 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="ResetEncoders")
 public class ResetEncoders extends LinearOpMode {
 
-    public DcMotorEx kneeMotor = null;
-    public DcMotorEx thighMotor = null;
+    public DcMotorEx[] kneeMotors = new DcMotorEx[4];
+    public DcMotorEx[] thighMotors = new DcMotorEx[4];
+    public String[] motorNames = { "frontLeft", "frontRight", "rearLeft", "rearRight" };
 
     @Override
     public void runOpMode() {
 
-        kneeMotor = hardwareMap.get(DcMotorEx.class, "knee");
-        thighMotor = hardwareMap.get(DcMotorEx.class, "thigh");
+        for(int i = 0; i < 4; i++) {
+            kneeMotors[i] = hardwareMap.get(DcMotorEx.class, motorNames[i] + "Knee");
+            thighMotors[i] = hardwareMap.get(DcMotorEx.class, motorNames[i] + "Thigh");
+        }
 
         waitForStart();
 
-        kneeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        kneeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        thighMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        thighMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        for(int i = 0; i < 4; i++) {
+
+            kneeMotors[i].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            kneeMotors[i].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            thighMotors[i].setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            thighMotors[i].setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        }
 
     }
 
