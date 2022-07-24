@@ -50,7 +50,7 @@ public class FrontLeftLeg {
         thighMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         thighMotor.setPower(0.8);
 
-        elbowServo.setPosition(0.5);
+        elbowServo.setPosition(0.55);
     }
 
     public void goToPos(double x, double y, double z, double pitch, double roll) {
@@ -67,7 +67,9 @@ public class FrontLeftLeg {
         if(thighLow <= thighPos && thighPos <= thighHigh)
             thighMotor.setTargetPosition(thighPos);
 
-        elbowServo.setPosition(servoRawAngleToPos(ans[2]) + roll / 300 * 3.88888);
+        double servoAngle = servoRawAngleToPos(ans[2]) + roll / 300 * 3.8888 + 0.05;
+        if(servoAngle > 0.15 && servoAngle < 0.95)
+            elbowServo.setPosition(servoAngle);
     }
 
     public double servoRawAngleToPos(double angle) {

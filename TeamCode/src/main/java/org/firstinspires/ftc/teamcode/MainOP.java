@@ -1,10 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
+@Config
+class SpeedCoeff {
+    public static double speed = 4;
+}
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="MainOP")
 public class MainOP extends LinearOpMode {
@@ -17,7 +23,9 @@ public class MainOP extends LinearOpMode {
     public RearLeftLeg   rearLeft    = null;
     public RearRightLeg  rearRight   = null;
     public double pitch;
-    public double roll;
+    public double roll = 0;
+    public double actualPitch;
+    public double actualRoll;
 
     void _init() {
 
@@ -26,30 +34,30 @@ public class MainOP extends LinearOpMode {
         rearLeft   = new RearLeftLeg(hardwareMap);
         rearRight  = new RearRightLeg(hardwareMap);
 
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+//        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+//
+//        parameters.mode                = BNO055IMU.SensorMode.IMU;
+//        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+//        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+//        parameters.loggingEnabled      = false;
+//
+//        imu = hardwareMap.get(BNO055IMU.class, "imu");
+//        imu.initialize(parameters);
+//
+//
+//        telemetry.addData("Mode", "calibrating...");
+//        telemetry.update();
+//
+//        // make sure the imu gyro is calibrated before continuing.
+//        while (!isStopRequested() && !imu.isGyroCalibrated())
+//        {
+//            sleep(50);
+//            idle();
+//        }
 
-        parameters.mode                = BNO055IMU.SensorMode.IMU;
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.loggingEnabled      = false;
-
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
-
-
-        telemetry.addData("Mode", "calibrating...");
-        telemetry.update();
-
-        // make sure the imu gyro is calibrated before continuing.
-        while (!isStopRequested() && !imu.isGyroCalibrated())
-        {
-            sleep(50);
-            idle();
-        }
-
-        telemetry.addData("Mode", "waiting for start");
-        telemetry.addData("imu calibration status", imu.getCalibrationStatus().toString());
-        telemetry.update();
+//        telemetry.addData("Mode", "waiting for start");
+//        telemetry.addData("imu calibration status", imu.getCalibrationStatus().toString());
+//        telemetry.update();
 
     }
 
@@ -58,42 +66,95 @@ public class MainOP extends LinearOpMode {
 
         _init(); waitForStart();
 
-        new Thread(() -> {
-            while(opModeIsActive() && !isStopRequested()) {
-                lastAngles = imu.getAngularOrientation();
-
-                pitch = lastAngles.thirdAngle;
-                roll = lastAngles.firstAngle;
-
-                if(pitch > 90) pitch = 180 - pitch;
-                if(pitch < -90) pitch = 180 + pitch;
-
-                telemetry.addData("pitch: ", pitch);
-                telemetry.addData("roll: ", roll);
-                telemetry.update();
-
-                sleep(50);
-            }
-        }).start();
+//        new Thread(() -> {
+//            while(opModeIsActive() && !isStopRequested()) {
+////                lastAngles = imu.getAngularOrientation();
+////
+////                actualPitch = lastAngles.thirdAngle;
+////                actualRoll = lastAngles.firstAngle;
+//
+////                roll = 0.9 * roll + 0.1 * actualRoll;
+////
+////                telemetry.addData("pitch: ", pitch);
+////                telemetry.addData("roll: ", roll);
+////                telemetry.update();
+//
+//                sleep(50);
+//            }
+//        }).start();
 
         while(!isStopRequested()) {
 
             Thread[] threads = new Thread[4];
+//              DYNAMICALLY STABLE GATE NOT WORKING RN
+//            threads[0] = new Thread(() -> {
+//                interpolateFrontLeft(-20, 290, 0, 900);
+//                interpolateFrontLeft(10, 220, 0, 100);
+//                interpolateFrontLeft(20, 290, 0, 100);
+//                interpolateFrontLeft(-10, 290, 0, 900);
+//            });
+//
+//            threads[1] = new Thread(() -> {
+//                interpolateFrontRight(10, 220, 0, 100);
+//                interpolateFrontRight(20, 290, 0, 100);
+//                interpolateFrontRight(-20, 290, 0, 1800);
+//            });
+//
+//            threads[2] = new Thread(() -> {
+//                interpolateRearLeft(-10, 220, 0, 100);
+//                interpolateRearLeft(-20, 290, 0, 100);
+//                interpolateRearLeft(20, 290, 0, 1800);
+//            });
+//
+//            threads[3] = new Thread(() -> {
+//                interpolateRearRight(20, 290, 0, 900);
+//                interpolateRearRight(-10, 220, 0, 100);
+//                interpolateRearRight(-20, 290, 0, 100);
+//                interpolateRearRight(10, 290, 0, 900);
+//            });
 
             threads[0] = new Thread(() -> {
-                interpolateFrontLeft(0, 280, 0, 500);
+                interpolateFrontLeft(10, 280, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(20, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(0, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(-20, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateFrontLeft(-30, 300, 0, 100 * SpeedCoeff.speed);
             });
 
             threads[1] = new Thread(() -> {
-                interpolateFrontRight(0, 280, 0, 500);
+                interpolateFrontRight(0, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(-10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(-20, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(-30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(10, 280, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(20, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateFrontRight(10, 300, 0, 100 * SpeedCoeff.speed);
             });
 
             threads[2] = new Thread(() -> {
-                interpolateRearLeft(0, 280, 0, 500);
+                interpolateRearLeft(-20, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(-10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(0, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(20, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(-10, 280, 0, 100 * SpeedCoeff.speed);
+                interpolateRearLeft(-30, 300, 0, 100 * SpeedCoeff.speed);
             });
 
             threads[3] = new Thread(() -> {
-                interpolateRearRight(0, 280, 0, 500);
+                interpolateRearRight(20, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateRearRight(30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearRight(-10, 280, 0, 100 * SpeedCoeff.speed);
+                interpolateRearRight(-30, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearRight(-20, 300, 20, 100 * SpeedCoeff.speed);
+                interpolateRearRight(-10, 300, 0, 100 * SpeedCoeff.speed);
+                interpolateRearRight(0, 300, -20, 100 * SpeedCoeff.speed);
+                interpolateRearRight(10, 300, 0, 100 * SpeedCoeff.speed);
             });
 
 
@@ -198,14 +259,14 @@ public class MainOP extends LinearOpMode {
             double Y = startY * (1 - ratio) + y * ratio;
             double Z = startZ * (1 - ratio) + z * ratio;
 
-            frontRight.goToPos(X, Y, Z, pitch, -roll + 4);
+            frontRight.goToPos(X, Y, Z, pitch, -roll);
             frontRight.posX = X;
             frontRight.posY = Y;
             frontRight.posZ = Z;
 
         }
 
-        frontRight.goToPos(x, y, z, pitch, -roll + 4);
+        frontRight.goToPos(x, y, z, pitch, -roll);
         frontRight.posX = x;
         frontRight.posY = y;
         frontRight.posZ = z;
@@ -273,7 +334,7 @@ public class MainOP extends LinearOpMode {
 
         if(startY == -1) {
 
-            rearRight.goToPos(x, y, z, pitch, roll + 4);
+            rearRight.goToPos(x, y, z, pitch, roll);
             rearRight.posX = x;
             rearRight.posY = y;
             rearRight.posZ = z;
@@ -292,7 +353,7 @@ public class MainOP extends LinearOpMode {
             double Y = startY * (1 - ratio) + y * ratio;
             double Z = startZ * (1 - ratio) + z * ratio;
 
-            rearRight.goToPos(X, Y, Z, pitch, roll + 4);
+            rearRight.goToPos(X, Y, Z, pitch, roll);
             rearRight.posX = X;
             rearRight.posY = Y;
             rearRight.posZ = Z;

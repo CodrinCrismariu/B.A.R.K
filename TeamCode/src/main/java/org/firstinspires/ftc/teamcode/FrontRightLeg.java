@@ -67,7 +67,9 @@ public class FrontRightLeg {
         if(thighLow <= thighPos && thighPos <= thighHigh)
             thighMotor.setTargetPosition(thighPos);
 
-        elbowServo.setPosition(servoRawAngleToPos(ans[2]) + roll / 300 * 3.8888);
+        double servoAngle = servoRawAngleToPos(ans[2]) + roll / 300 * 3.8888 - 0.1;
+        if(servoAngle > 0 && servoAngle < 0.8)
+            elbowServo.setPosition(servoAngle);
     }
 
     public double servoRawAngleToPos(double angle) {

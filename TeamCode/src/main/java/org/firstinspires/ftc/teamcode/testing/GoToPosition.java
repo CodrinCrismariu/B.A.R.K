@@ -52,10 +52,10 @@ public class GoToPosition extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive()) {
-//            fl.goToPos(GoToPos.x, GoToPos.y, GoToPos.z);
-//            fr.goToPos(GoToPos.x, GoToPos.y, GoToPos.z);
-//            rl.goToPos(GoToPos.x, GoToPos.y, GoToPos.z);
-//            rr.goToPos(GoToPos.x, GoToPos.y, GoToPos.z);
+            fl.goToPos(GoToPos.x * gamepad1.right_stick_y, GoToPos.y, GoToPos.z * gamepad1.right_stick_x, 0, 0);
+            fr.goToPos(GoToPos.x * gamepad1.right_stick_y, GoToPos.y, GoToPos.z * gamepad1.right_stick_x, 0, 0);
+            rl.goToPos(-GoToPos.x * gamepad1.right_stick_y, GoToPos.y, -GoToPos.z * gamepad1.right_stick_x, 0, 0);
+            rr.goToPos(-GoToPos.x * gamepad1.right_stick_y, GoToPos.y, -GoToPos.z * gamepad1.right_stick_x, 0, 0);
         }
 //        leg = new FrontLeftLeg(hardwareMap);
 //

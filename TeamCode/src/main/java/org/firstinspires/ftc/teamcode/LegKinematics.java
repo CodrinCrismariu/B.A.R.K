@@ -11,7 +11,7 @@ public class LegKinematics {
 
         try {
             double sq = sqrt(y * y + z * z);
-            double alfa3 = acos(y / (sq));
+            double alfa3 = asin(z / (sq));
             ///y=y'
             y = sq;
             y -= l3;
