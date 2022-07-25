@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.testing;
 
+import static java.lang.Math.max;
+
 import android.media.MediaPlayer;
 
 import com.acmerobotics.dashboard.FtcDashboard;
@@ -13,7 +15,15 @@ import org.firstinspires.ftc.teamcode.FrontLeftLeg;
 import org.firstinspires.ftc.teamcode.FrontRightLeg;
 import org.firstinspires.ftc.teamcode.RearLeftLeg;
 import org.firstinspires.ftc.teamcode.RearRightLeg;
+import org.opencv.calib3d.Calib3d;
+import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.MatOfPoint2f;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.QRCodeDetector;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -23,6 +33,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 import java.io.IOException;
 import java.nio.file.OpenOption;
+import java.util.ArrayList;
+import java.util.List;
 
 @Config
 class Coeff {
@@ -46,6 +58,9 @@ public class PitchRollOPMODE extends LinearOpMode {
     public double roll = 0;
     public double actualPitch;
     public double actualRoll;
+    public double X = 320;
+    public double Y = 0;
+    public double look = 0;
     public OpenCvCamera camera = null;
     public MediaPlayer player = null;
 
@@ -53,7 +68,7 @@ public class PitchRollOPMODE extends LinearOpMode {
     void openCamera() {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier
                 ("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createInternalCamera2(OpenCvInternalCamera2.CameraDirection.FRONT, cameraMonitorViewId);
+        camera = OpenCvCameraFactory.getInstance().createInternalCamera2(OpenCvInternalCamera2.CameraDirection.BACK, cameraMonitorViewId);
         camera.setPipeline(new PipeLine());
 
         // ------------------ OpenCv code
@@ -61,7 +76,7 @@ public class PitchRollOPMODE extends LinearOpMode {
 
             @Override
             public void onOpened() {
-                camera.startStreaming(1280, 720, OpenCvCameraRotation.SIDEWAYS_LEFT);
+                camera.startStreaming(640, 480, OpenCvCameraRotation.SIDEWAYS_LEFT);
             }
 
             @Override
@@ -137,9 +152,9 @@ public class PitchRollOPMODE extends LinearOpMode {
                 pitch = 0.9 * pitch + 0.1 * actualPitch;
                 roll = 0.9 * roll + 0.1 * actualRoll;
 
-                telemetry.addData("pitch: ", pitch);
-                telemetry.addData("roll: ", roll);
-                telemetry.update();
+//                telemetry.addData("pitch: ", pitch);
+//                telemetry.addData("roll: ", roll);
+//                telemetry.update();
 
                 sleep(50);
             }
@@ -150,31 +165,40 @@ public class PitchRollOPMODE extends LinearOpMode {
             if(!player.isPlaying() && gamepad1.a)
                 player.start();
 
+            if(X > 420) {
+                look += 0.1;
+            } else if(X < 210) {
+                look -= 0.1;
+            }
+
+            if(look > 1) look = 1;
+            if(look < -1) look = -1;
+
             frontLeft.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
-                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
-                    gamepad1.left_stick_y * Coeff.yCoeff,
-                    pitch,
-                    roll);
-            frontRight.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
-                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
-                    gamepad1.left_stick_y * Coeff.yCoeff,
-                    pitch,
-                    roll);
-            rearLeft.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
                     300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
-                    -gamepad1.left_stick_y * Coeff.yCoeff,
+                    gamepad1.left_stick_y * Coeff.yCoeff,
                     pitch,
-                    roll);
-            rearRight.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
+                    -roll + look * Coeff.rollCoeff);
+            frontRight.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
                     300 + gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                    gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    -roll + look * Coeff.rollCoeff);
+            rearLeft.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
+                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
                     -gamepad1.left_stick_y * Coeff.yCoeff,
                     pitch,
-                    roll);
+                    roll + look * Coeff.rollCoeff);
+            rearRight.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
+                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                    -gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    roll + look * Coeff.rollCoeff);
 
         }
     }
 
-    public QRCodeDetector detector = new QRCodeDetector();
+    public Mat mat = new Mat();
 
     class PipeLine extends OpenCvPipeline {
         boolean viewportPaused = false;
@@ -182,17 +206,44 @@ public class PitchRollOPMODE extends LinearOpMode {
         @Override
         public Mat processFrame(Mat input) {
 
-            Mat points = new Mat();
-            String idfk = detector.detectAndDecode(input, points);
+            Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
 
-            telemetry.addData("data", idfk);
+            // define a lower_bound and upper_bound in HSV for color green
+            Scalar lowHSV = new Scalar(160, 150, 100);
+            Scalar highHSV = new Scalar(180, 255, 255);
 
-            if(!points.empty()) {
-                telemetry.addData("points: ", points.toString());
+            Core.inRange(mat, lowHSV, highHSV, mat);
+
+            final List<MatOfPoint> points = new ArrayList<>();
+            final Mat hierarchy = new Mat();
+            Imgproc.findContours(mat, points, hierarchy, Imgproc.RETR_TREE, Imgproc.CHAIN_APPROX_SIMPLE);
+
+            int mx = 0;
+            for (int i = 0; i < points.size(); i++) {
+                Rect boundRect = Imgproc.boundingRect(points.get(i));
+                mx = max(mx, (int) boundRect.area());
             }
 
-            points.release();
-            telemetry.update();
+            int x = 0, y = 0;
+            if(mx > 50) {
+                for (int i = 0; i < points.size(); i++) {
+                    Rect boundRect = Imgproc.boundingRect(points.get(i));
+                    if ((int) boundRect.area() == mx) {
+                        Imgproc.rectangle(input, boundRect, new Scalar(0, 255, 0));
+                        x = boundRect.x + boundRect.height / 2;
+                        y = boundRect.y + boundRect.width / 2;
+
+                        X = x;
+                        Y = y;
+                    }
+                }
+
+            } else {
+                X = 320;
+                Y = 0;
+            }
+
+            Core.flip(input, input, -1);
             return input;
         }
 
