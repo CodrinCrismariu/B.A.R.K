@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.testing;
 
+import android.media.MediaPlayer;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -12,12 +14,14 @@ import org.firstinspires.ftc.teamcode.FrontRightLeg;
 import org.firstinspires.ftc.teamcode.RearLeftLeg;
 import org.firstinspires.ftc.teamcode.RearRightLeg;
 import org.opencv.core.Mat;
+import org.opencv.objdetect.QRCodeDetector;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera2;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+import java.io.IOException;
 import java.nio.file.OpenOption;
 
 @Config
@@ -43,6 +47,7 @@ public class PitchRollOPMODE extends LinearOpMode {
     public double actualPitch;
     public double actualRoll;
     public OpenCvCamera camera = null;
+    public MediaPlayer player = null;
 
     // deschide camera si transmite datele catre laptop prin FTCDashBoard
     void openCamera() {
@@ -76,6 +81,16 @@ public class PitchRollOPMODE extends LinearOpMode {
         frontRight = new FrontRightLeg(hardwareMap);
         rearLeft   = new RearLeftLeg(hardwareMap);
         rearRight  = new RearRightLeg(hardwareMap);
+
+        try {
+            player = new MediaPlayer();
+            player.setVolume(1, 1);
+            player.setDataSource("/storage/emulated/0/Music/dogbarking.mp3");
+            player.prepareAsync();
+        } catch (IOException e){
+            telemetry.addData("TEST", e);
+            telemetry.update();
+        }
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 
@@ -132,36 +147,52 @@ public class PitchRollOPMODE extends LinearOpMode {
 
         while(!isStopRequested()) {
 
+            if(!player.isPlaying() && gamepad1.a)
+                player.start();
+
             frontLeft.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
-                              300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
-                              gamepad1.left_stick_y * Coeff.yCoeff,
-                                 pitch,
-                                 roll);
+                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
+                    gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    roll);
             frontRight.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
-                               300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
-                               gamepad1.left_stick_y * Coeff.yCoeff,
-                                  pitch,
-                                  roll);
+                    300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                    gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    roll);
             rearLeft.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
-                             300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
-                             -gamepad1.left_stick_y * Coeff.yCoeff,
-                                pitch,
-                                roll);
+                    300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
+                    -gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    roll);
             rearRight.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
-                              300 + gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
-                              -gamepad1.left_stick_y * Coeff.yCoeff,
-                                 pitch,
-                                 roll);
+                    300 + gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                    -gamepad1.left_stick_y * Coeff.yCoeff,
+                    pitch,
+                    roll);
 
         }
     }
+
+    public QRCodeDetector detector = new QRCodeDetector();
 
     class PipeLine extends OpenCvPipeline {
         boolean viewportPaused = false;
 
         @Override
         public Mat processFrame(Mat input) {
-            // we can process the frame for image recognition
+
+            Mat points = new Mat();
+            String idfk = detector.detectAndDecode(input, points);
+
+            telemetry.addData("data", idfk);
+
+            if(!points.empty()) {
+                telemetry.addData("points: ", points.toString());
+            }
+
+            points.release();
+            telemetry.update();
             return input;
         }
 
