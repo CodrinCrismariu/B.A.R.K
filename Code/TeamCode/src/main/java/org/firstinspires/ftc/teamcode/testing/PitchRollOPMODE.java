@@ -44,16 +44,16 @@ class Coeff {
     public static double yCoeff = 20;
 }
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="PitchRollTest")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "PitchRollTest")
 public class PitchRollOPMODE extends LinearOpMode {
 
-    public BNO055IMU     imu         = null;
-    public Orientation   lastAngles  = new Orientation();
+    public BNO055IMU imu = null;
+    public Orientation lastAngles = new Orientation();
 
-    public FrontLeftLeg frontLeft   = null;
-    public FrontRightLeg frontRight  = null;
-    public RearLeftLeg rearLeft    = null;
-    public RearRightLeg rearRight   = null;
+    public FrontLeftLeg frontLeft = null;
+    public FrontRightLeg frontRight = null;
+    public RearLeftLeg rearLeft = null;
+    public RearRightLeg rearRight = null;
     public double pitch;
     public double roll = 0;
     public double actualPitch;
@@ -92,27 +92,27 @@ public class PitchRollOPMODE extends LinearOpMode {
 
     void _init() {
 
-        frontLeft  = new FrontLeftLeg(hardwareMap);
+        frontLeft = new FrontLeftLeg(hardwareMap);
         frontRight = new FrontRightLeg(hardwareMap);
-        rearLeft   = new RearLeftLeg(hardwareMap);
-        rearRight  = new RearRightLeg(hardwareMap);
+        rearLeft = new RearLeftLeg(hardwareMap);
+        rearRight = new RearRightLeg(hardwareMap);
 
         try {
             player = new MediaPlayer();
             player.setVolume(1, 1);
             player.setDataSource("/storage/emulated/0/Music/dogbarking.mp3");
             player.prepareAsync();
-        } catch (IOException e){
+        } catch (IOException e) {
             telemetry.addData("TEST", e);
             telemetry.update();
         }
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 
-        parameters.mode                = BNO055IMU.SensorMode.IMU;
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.loggingEnabled      = false;
+        parameters.mode = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled = false;
 
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
@@ -122,8 +122,7 @@ public class PitchRollOPMODE extends LinearOpMode {
         telemetry.update();
 
         // make sure the imu gyro is calibrated before continuing.
-        while (!isStopRequested() && !imu.isGyroCalibrated())
-        {
+        while (!isStopRequested() && !imu.isGyroCalibrated()) {
             sleep(50);
             idle();
         }
@@ -139,10 +138,11 @@ public class PitchRollOPMODE extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        _init(); waitForStart();
+        _init();
+        waitForStart();
 
         new Thread(() -> {
-            while(opModeIsActive() && !isStopRequested()) {
+            while (opModeIsActive() && !isStopRequested()) {
                 lastAngles = imu.getAngularOrientation();
 
                 actualPitch = lastAngles.thirdAngle;
@@ -160,19 +160,19 @@ public class PitchRollOPMODE extends LinearOpMode {
             }
         }).start();
 
-        while(!isStopRequested()) {
+        while (!isStopRequested()) {
 
-            if(!player.isPlaying() && gamepad1.a)
+            if (!player.isPlaying() && gamepad1.a)
                 player.start();
 
-            if(X > 420) {
+            if (X > 420) {
                 look += 0.1;
-            } else if(X < 210) {
+            } else if (X < 210) {
                 look -= 0.1;
             }
 
-            if(look > 1) look = 1;
-            if(look < -1) look = -1;
+            if (look > 1) look = 1;
+            if (look < -1) look = -1;
 
             frontLeft.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
                     300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
@@ -208,7 +208,7 @@ public class PitchRollOPMODE extends LinearOpMode {
 
             Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV);
 
-            // define a lower_bound and upper_bound in HSV for color green
+            // define a lower_bound and upper_bound in HSV for color red
             Scalar lowHSV = new Scalar(160, 150, 100);
             Scalar highHSV = new Scalar(180, 255, 255);
 
@@ -225,7 +225,7 @@ public class PitchRollOPMODE extends LinearOpMode {
             }
 
             int x = 0, y = 0;
-            if(mx > 50) {
+            if (mx > 50) {
                 for (int i = 0; i < points.size(); i++) {
                     Rect boundRect = Imgproc.boundingRect(points.get(i));
                     if ((int) boundRect.area() == mx) {
