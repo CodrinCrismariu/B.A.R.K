@@ -1,11 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.media.MediaPlayer;
+
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+
+import java.io.IOException;
 
 @Config
 class SpeedCoeff {
@@ -26,6 +30,7 @@ public class MainOP extends LinearOpMode {
     public double roll = 0;
     public double actualPitch;
     public double actualRoll;
+    public MediaPlayer player=null;
 
     void _init() {
 
@@ -33,6 +38,15 @@ public class MainOP extends LinearOpMode {
         frontRight = new FrontRightLeg(hardwareMap);
         rearLeft   = new RearLeftLeg(hardwareMap);
         rearRight  = new RearRightLeg(hardwareMap);
+        try {
+            player = new MediaPlayer();
+            player.setVolume(1, 1);
+            player.setDataSource("/storage/emulated/0/Music/dogbarking.mp3");
+            player.prepareAsync();
+        }catch (IOException e){
+            telemetry.addData("TEST",e);
+            telemetry.update();
+        }
 
 //        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
 //
@@ -84,6 +98,8 @@ public class MainOP extends LinearOpMode {
 //        }).start();
 
         while(!isStopRequested()) {
+            if(!player.isPlaying())
+                player.start();
 
             Thread[] threads = new Thread[4];
 //              DYNAMICALLY STABLE GATE NOT WORKING RN

@@ -4,8 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/B.A.R.K.iml" filepath="$PROJECT_DIR$/.idea/modules/B.A.R.K.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.main.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/FtcRobotController/B.A.R.K.FtcRobotController.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/MeepMeepTesting/B.A.R.K.MeepMeepTesting.iml" filepath="$PROJECT_DIR$/.idea/modules/MeepMeepTesting/B.A.R.K.MeepMeepTesting.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.main.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/TeamCode/B.A.R.K.TeamCode.unitTest.iml" />
     </modules>
   </component>
 </project>
