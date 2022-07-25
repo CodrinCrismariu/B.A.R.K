@@ -118,6 +118,8 @@ public class PitchRollOPMODE extends LinearOpMode {
                 actualPitch = lastAngles.thirdAngle;
                 actualRoll = lastAngles.firstAngle;
 
+
+                pitch = 0.9 * pitch + 0.1 * actualPitch;
                 roll = 0.9 * roll + 0.1 * actualRoll;
 
                 telemetry.addData("pitch: ", pitch);
@@ -130,10 +132,26 @@ public class PitchRollOPMODE extends LinearOpMode {
 
         while(!isStopRequested()) {
 
-            frontLeft.goToPos(gamepad1.left_stick_x * Coeff.xCoeff, 300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff, gamepad1.left_stick_y * Coeff.yCoeff, 0, 0);
-            frontRight.goToPos(gamepad1.left_stick_x * Coeff.xCoeff, 300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff, gamepad1.left_stick_y * Coeff.yCoeff, 0, 0);
-            rearLeft.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff, 300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff, -gamepad1.left_stick_y * Coeff.yCoeff, 0, 0);
-            rearRight.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff, 300 + gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff, -gamepad1.left_stick_y * Coeff.yCoeff, 0, 0);
+            frontLeft.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
+                              300 - gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
+                              gamepad1.left_stick_y * Coeff.yCoeff,
+                                 pitch,
+                                 roll);
+            frontRight.goToPos(gamepad1.left_stick_x * Coeff.xCoeff,
+                               300 - gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                               gamepad1.left_stick_y * Coeff.yCoeff,
+                                  pitch,
+                                  roll);
+            rearLeft.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
+                             300 + gamepad1.right_stick_y * Coeff.pitchCoeff + gamepad1.right_stick_x * Coeff.rollCoeff,
+                             -gamepad1.left_stick_y * Coeff.yCoeff,
+                                pitch,
+                                roll);
+            rearRight.goToPos(-gamepad1.left_stick_x * Coeff.xCoeff,
+                              300 + gamepad1.right_stick_y * Coeff.pitchCoeff - gamepad1.right_stick_x * Coeff.rollCoeff,
+                              -gamepad1.left_stick_y * Coeff.yCoeff,
+                                 pitch,
+                                 roll);
 
         }
     }
