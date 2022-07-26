@@ -17,23 +17,23 @@ Big Automated Robot Kanine or B.A.R.K. represents our project for InfoEducatie.
 
 **4 goBILDA 60RPM motors:** https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-99-5-1-ratio-24mm-length-8mm-rex-shaft-60-rpm-3-3-5v-encoder/
 
-**2 REV motors:** https://www.revrobotics.com/rev-41-1600/
+**3 REV motors:** https://www.revrobotics.com/rev-41-1600/
 
-**2 goBILDA 117RPM motor:** https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-50-9-1-ratio-24mm-length-8mm-rex-shaft-117-rpm-3-3-5v-encoder/
+**1 goBILDA 117RPM motor:** https://www.gobilda.com/5203-series-yellow-jacket-planetary-gear-motor-50-9-1-ratio-24mm-length-8mm-rex-shaft-117-rpm-3-3-5v-encoder/
 
-**3 REV Servos:** https://www.revrobotics.com/rev-41-1097/
+**2 REV Servos:** https://www.revrobotics.com/rev-41-1097/
 
-**1 goBILDA Torque servo:** https://www.gobilda.com/2000-series-dual-mode-servo-25-2-torque/
+**2 goBILDA Torque servo:** https://www.gobilda.com/2000-series-dual-mode-servo-25-2-torque/
 
 **4 goBILDA ServoBlocks:** https://www.gobilda.com/servoblock-standard-size-25-tooth-spline-hub-shaft/
 
-**2 goBILDA Matrix batteries:** https://www.gobilda.com/matrix-12v-3000mah-nimh-battery/
+**2 Modern Robotics batteries:** https://www.gobilda.com/matrix-12v-3000mah-nimh-battery/
 
 ## Other Materials
 
 **3D printer filament:** black/blue pla
 
-**Tubes:** pvc/ppr tuber
+**Tubes:** pvc/ppr tube with aluminium inserts
 
 ## Deployment
 
