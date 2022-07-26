@@ -1,10 +1,10 @@
 # B.A.R.K
 
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?
+Big Automated Robot Kanine or B.A.R.K. represents our project for InfoEducatie.
 
 ## CAD
-
+https://a360.co/3bcF5bw
 ![Cad Screenshot](/assets/image1.jpeg)
 ![Cad Screenshot](/assets/image2.jpeg)
 
