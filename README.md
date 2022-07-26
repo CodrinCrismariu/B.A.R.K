@@ -14,9 +14,7 @@ La robot este atasat si un telefon Moto G5 redand în timp real feedul camerei c
 
 
 
-## CAD
-
-<a href="https://a360.co/3bcF5bw">CAD</a>
+## <a href="https://a360.co/3bcF5bw">CAD</a>
 
 ![Cad Screenshot](/assets/image1.jpeg)
 ![Cad Screenshot](/assets/image2.jpeg)
