@@ -109,6 +109,8 @@ FTC Dashboard interface for camera communication and debugging
 Parts step files from electronics vendors(gobilda.com, revrobotics.com)
 
 ## Authors
+
 Crismariu Codrin -> CAD, Movement Code, Building
+
 Crismariu Denis -> CAD, Sound Code, Building
 
