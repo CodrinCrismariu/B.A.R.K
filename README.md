@@ -103,3 +103,12 @@ public class LegKinematics {
 }
 ```
 
+## External Libraries used
+The FTC Sdk for communicating with rev expansion hubs and creating the robot controller app
+FTC Dashboard interface for camera communication and debugging
+Parts step files from electronics vendors(gobilda.com, revrobotics.com)
+
+## Authors
+Crismariu Codrin -> CAD, Movement Code, Building
+Crismariu Denis -> CAD, Sound Code, Building
+
