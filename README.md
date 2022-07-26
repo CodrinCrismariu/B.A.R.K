@@ -102,6 +102,48 @@ public class LegKinematics {
     }
 }
 ```
+Interpolate
+```java
+public void interpolateFrontRight(double x,double y,double z,double time) //pos in mm / time in milliseconds
+    {
+
+        if(frontRight == null) return;
+
+        double startX = frontRight.posX;
+        double startY = frontRight.posY;
+        double startZ = frontRight.posZ;
+
+        if(startY == -1) {
+
+            frontRight.goToPos(x, y, z, pitch, -roll + 4);
+            frontRight.posX = x;
+            frontRight.posY = y;
+            frontRight.posZ = z;
+            return;
+        }
+
+        ElapsedTime runtime= new ElapsedTime();
+        runtime.reset();
+
+        while(runtime.milliseconds() < time && !isStopRequested()) {
+
+            double ratio = runtime.milliseconds() / time;
+            double X = startX * (1 - ratio) + x * ratio;
+            double Y = startY * (1 - ratio) + y * ratio;
+            double Z = startZ * (1 - ratio) + z * ratio;
+
+            frontRight.goToPos(X, Y, Z, pitch, -roll);
+            frontRight.posX = X;
+            frontRight.posY = Y;
+            frontRight.posZ = Z;
+        }
+
+        frontRight.goToPos(x, y, z, pitch, -roll);
+        frontRight.posX = x;
+        frontRight.posY = y;
+        frontRight.posZ = z;
+
+    }```
 
 ## External Libraries used
 The FTC Sdk for communicating with rev expansion hubs and creating the robot controller app
