@@ -40,9 +40,9 @@ La robot este atasat si un telefon Moto G5 redand în timp real feedul camerei c
 
 ## Other Materials
 
-**3D printer filament:** black/blue pla
+**3D printer filament:** black/blue pla 
 
-**Tubes:** pvc/ppr tube with aluminium inserts
+**Tubes:** pvc/ppr tube with aluminium inserts , mdf plates
 
 ## Deployment
 
