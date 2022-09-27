@@ -52,7 +52,7 @@ First reset the encoders
 ResetEncoders.java
 ```
 
-Run the main sdk
+Run the main program
 
 ```
 PitchRollOPMODE.java
